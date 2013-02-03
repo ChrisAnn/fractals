@@ -3,9 +3,7 @@ var canvas = document.getElementById("fractal-canvas");
 var ctx = canvas.getContext('2d');
 
 function Fractal() {
-	"use strict"; 
-    var self = this;
-    var context = new webkitAudioContext();
+	"use strict";
 
     this.render = function() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -24,12 +22,14 @@ function Fractal() {
                     var y1=2*x*y+c2;
                     var r=x1*x1+y1*y1;
                     if(r > 4){
-//                        console.log("break! " + r + " i: " + i + " j: " + j);
                         break;
                     }
                     x = x1;
                     y = y1;
-                    var fillStyle = 'rgb(' + (n*20) + ',0,0)';
+                    var red = Math.floor(Math.sin(n) * 127 + 128);
+                    var green = Math.floor(Math.sin(n+2) * 127 + 128);
+                    var blue = Math.floor(Math.sin(n+4) * 127 + 128);
+                    var fillStyle = 'rgb(' + red + ',' + green + ',' + blue + ')';
                     ctx.fillStyle = fillStyle;
                 }
 
